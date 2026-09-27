@@ -221,7 +221,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem
 .icon-link{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);color:var(--ink);transition:color .2s,border-color .2s}
 .icon-link:hover{color:var(--cyan);border-color:var(--cyan)}
 .icon-link svg{width:18px;height:18px}
-.resume-btn{font-family:var(--mono);font-size:.82rem;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:.5rem .95rem;cursor:pointer;transition:color .2s,border-color .2s}
+.resume-btn{display:inline-block;text-decoration:none;font-family:var(--mono);font-size:.82rem;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:.5rem .95rem;cursor:pointer;transition:color .2s,border-color .2s}
 .resume-btn:hover{color:var(--ember);border-color:var(--ember)}
 button.btn{background:transparent;color:var(--ink);cursor:pointer}
 .toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 1.5rem);transform:translate(-50%,20px);opacity:0;background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:.82rem;padding:.7rem 1.1rem;border-radius:999px;transition:opacity .25s,transform .25s;z-index:80;pointer-events:none}
@@ -275,7 +275,7 @@ button.btn{background:transparent;color:var(--ink);cursor:pointer}
         <li><a href="#contact"><span class="n">06</span>// contact</a></li>
       </ol>
     </nav>
-    <button type="button" class="resume-btn" data-resume>Download résumé</button>
+    <a class="resume-btn" href="Nishith_Vadlamudi_Resume.pdf" download="Nishith_Vadlamudi_Resume.pdf">Download résumé</a>
     <a class="icon-link" href="https://github.com/NishithVadlamudi" target="_blank" rel="noopener noreferrer" aria-label="Nishith on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg></a>
     </div>
   </div>
@@ -436,9 +436,9 @@ git push origin main</div>
         <a class="btn" href="https://github.com/NishithVadlamudi" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
           View GitHub</a>
-        <button type="button" class="btn" data-resume>
+        <a class="btn" href="Nishith_Vadlamudi_Resume.pdf" download="Nishith_Vadlamudi_Resume.pdf">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
-          Download résumé (PDF)</button>
+          Download résumé (PDF)</a>
       </div>
     </div>
   </section>
@@ -449,7 +449,6 @@ git push origin main</div>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<a id="resumeFallback" hidden download="Nishith_Vadlamudi_Resume.pdf" href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EtT2JsaXF1ZSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjMgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iago1IDAgb2JqCjw8Ci9Db250ZW50cyA5IDAgUiAvTWVkaWFCb3ggWyAwIDAgNjEyIDc5MiBdIC9QYXJlbnQgOCAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKNiAwIG9iago8PAovUGFnZU1vZGUgL1VzZU5vbmUgL1BhZ2VzIDggMCBSIC9UeXBlIC9DYXRhbG9nCj4+CmVuZG9iago3IDAgb2JqCjw8Ci9BdXRob3IgKE5pc2hpdGggVmFkbGFtdWRpKSAvQ3JlYXRpb25EYXRlIChEOjIwMjYwOTI0MTk0NzI5KzAwJzAwJykgL0NyZWF0b3IgKFwodW5zcGVjaWZpZWRcKSkgL0tleXdvcmRzICgpIC9Nb2REYXRlIChEOjIwMjYwOTI0MTk0NzI5KzAwJzAwJykgL1Byb2R1Y2VyIChSZXBvcnRMYWIgUERGIExpYnJhcnkgLSBcKG9wZW5zb3VyY2VcKSkgCiAgL1N1YmplY3QgKFwodW5zcGVjaWZpZWRcKSkgL1RpdGxlIChOaXNoaXRoIFZhZGxhbXVkaSBSZXN1bWUpIC9UcmFwcGVkIC9GYWxzZQo+PgplbmRvYmoKOCAwIG9iago8PAovQ291bnQgMSAvS2lkcyBbIDUgMCBSIF0gL1R5cGUgL1BhZ2VzCj4+CmVuZG9iago5IDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDQzMTkKPj4Kc3RyZWFtCkdhdWBWPkJBN2EpTF5kTW9IViEuJlw7P0NCYlQ1ZCs8X21kX2YiIz1bLG5fQFU1Tl9XJClaaypuK2pPQDc3ckxKJzhAMyQxUUhBL0lENEdyP2FuIUpyM09uJmosQzgnM0lDO0VAWz46JC5xWj5IYk4+Xj0zZS1sIVJGT0ZhXGglZio0SCsnUVxnSCVUbj0lbVVhXk9jTD9hNiI2Y3JZJUleMHEySmlPYlw6cXN1K1xycEY9anFJS1NvckdhWVM0WmBIbzNWYG9MSXEmIyFaSlVFSkBkKlJdMl1VWzROP0hrOCIyakxRJksuOUdNZHRCTDlkRmZpYkUpIiUqal08VWgvWHNzMWdfV0AmPGQiNi06cUBeQTVRRTthXyc7NSZtOidsajBZYk9sbSxxME5uXFxdZVRnQ1U+Yz5TRW5nWipaWjxQNFNOMUVUcSxLIk5wL1xxVnNIM2s+cFJqRDBrWDZlZWw3VklOb1pcMmhOVlcrSGcsUExYNSdDbDRKbjo3MkdpbyorKVNzMztKRl8wQHRBXWg/KlIyRyVmcSJIaTA4U1oxNEwqdENwXkQ+ITxWYSJONnEyPUJwaG4oaFlBSVpaOFs0Rk9fJStFcUYvQkAyNl9jM1xiUVZMdEklcWZORlFpQ29YZ0g+TmpCRWcvPEcpTF1jUlpUNDA0ajJCOk4tUj4rMGtJWzMrKWk3PG5iMFN1RHFMWl0mOjwvNWh1aGZeX2g7clAzUjk6LUElQ01RaCcqOTlwZWU+K2BQZSsmT0dWJWdfJXEwViFwaGQ7XFFmTUNgXU91UGclMl9abk1tKm49Z0BgSWllZUtDMCY6bGxEYEN0anBtUiVlZyM/UGo+UlxyZTlpb1Q+J18zVC0iVTw5KmREbSwvJ3A8UkY4VTYicyk7RTQ2MmJUVCtRRD51Ki9QVTNrTFkrQSVLN1FYSVNSU2Y8WSluXU9ANCFFZD89ISlZP0VaJTFiXHBBLidzZ0IsQmVoWmwtRE5MU2QmZGwyVVondTBmOF9bcy5CaUA8JDZTRnJsJzw+cVM/TnFVOTIlWj5wSm86ZGBAM0MqLS8iJG5lT1ReXF9wYC88I20vXWFeOUVVVGY7dC1fWzddSDhNYUdRUUBlUzdcbU5rTUhbTTM7WWNDI0EqTTc+LW1GKmVyRTlAO1IpYjlGKicrWScpVmNuR2w4JFxPdW5sc1g8ZjIyZWprbmBiJVVELy1aOz5WbCg3WThuSkJybVxKMzRRYixfbFpYYDpVSmondEhaRkVuZ0hVcFgnXi5fKTpjcGZyWE8pR1Y9XUhOM1dCRFg+LTQ9WjgkNGo1Y0QsWnImMFlGIUxucEZeRm5hYDE4WlYxbl8lM2JSOEEqalA1YTcuIV43Jl8+IlRcKDBmTWYhVCpRQ2koU0BNWy10IXNiVmBtSS9hKmRoLXEsTjdkcDdoYVp1KnIhXCg4QjxyMTNmOmROSUw/YUlEOl9wPkZKTVY4VCNIS1NBZS5CPFM1alhqTl9Yb0goSGxLOjMpLzIkOVkzUyNrYnIxYEpfSnJFUVFIU04vOj01IjMzX05wYlpvTWZxNkA+TC9FNVxXPD8uX09scGNnaicxITVHT0ZWR1pnTmxTcGs9VTpFP2M0PDUncTFlLyRFNmRwbENlJ0lMJSxWU1RcY1kxUyNbUFY+aCdgLT8qOihyJiEiQE50cm0nQlBVKmRmUlE2UCcrYWxgKy9ea3RhJTw/PD43KFRTOytYaVRPKzhxJF5jWUxBQlJNYzw2LXIsVy0mZi9DOyowdHNNZiZDJ0MvVyw7dWdoPUwpUiI4PjEjbV08c10oJi8rb1diQTptPjpeQWZlKyZBLk9EQipiTSNEO28mIjovI0JxS2ErQ1VZOGg5dCEoLk1USVRsMCgtdVNPZkY8IWFdaC5uLkwpZk5HUi01aTErWU03TjUrbj8vKGZtMTI5TDJlb2ZgPEo2X2ooLj0zbjFoLT01NDJBaEEpI2FSIUxvQy1uUiRlP2M6IkYoWztPR0FOIkEoNlglVzRDcHAwJEM8bTQ8KFdDJzxKQnVUSEJyND1yYVRdW3Fcby5CZFckclNuOig6VChxcSgxRnBFRDY+MGxyRlZFQjdJJy10L3EsLy1mJWpUIyRkNkQ0XFVFMmdwclZ1YSshbzxkRkszKjk9Xys/cilqXyw+KmU3JnAsRCs2Y2MycVM3OmgjaHNTdGFJXCJtJUpAZ2FPOEpALUcyVkkqNC48JUk9bS5BJkNPR1xeJSUmQEFOPyUvITokR3FfakYoTzBGMUJVY0NzbGRuXERwK1FYSDEjT1k2YEJBXWo8NVU6QF5BSTtXWDhyLl5nOnVwSCdjM1ZBQiI1byhCS2ZmKDswQ2UnIXM+XUNCdGJlKywlJ2xoO0w7WytyX1k0RUNicSNGTGg5NGkvWC9rcVc7JDpDRy51M3VOXCtPUl1NdUVXJzskOihTNzU5VFBUbSRcRjgjWHNORVJUJUUkNFtWOilpLlI5Um5NJFw9QVppQk1ZTW4+Wm0iTzwkZHE2UWA5RnFXQGYraCtLIydoIjxSWlcxOCpKXDRub1kqM09gZCN1IU4hZTBtdSRVNSsjKlBpKVoqZ3VgKSpeWVlZaS90XldxdFAhJmInUidrV1RiJSdUKGhBVClDMkxePVpeS29yLXFgWVcqcUYnWS9PTW8yYTViRGEpRkRsRVdWTVA4QSMjTj1NUGdjPE5NQEE4Z3VPMD87JVFTYUhJcS4zJTpkVi8idXVOKjldSTkkTW41KWNUYkFsZjNBQzo9O0xUK0MrKFw+YiM6STtcYCtwNC1dOFxMJVxJT3QxZWhlWVRPb11XQT0tRi1WR0Y6L1BucGpqP0VyYFUhQUxkTmVnUzhzOCItbU5GTTpdS1BEKl1LKD1uSUMnaVhIYUFMIWVwT3RCTiYyaytuXiVuSzUjPmNxS1knVFs/Py03J3NyI1dITChBUmQwZjphQTBSYF4tLVJwRl9hNWUjWkxmVUc0T2lHPjE9OmVhJUcvOz4yWSdwTmJEZ2ZQXy83V0dPW1pPWSYtJVotNWBqck8+VXEpKiJvclgjKmRbazlfP25jbDBzJi1bTT04ISVdYm48Ty9jPWRoYzA6a3IiWkk/OGFNLygla0RxS2JfL2wvVV81dWJTVnVOMi1ZZklmSDxwPlhWPChbITA/QTUjOEsmOkNQa0RtU3VHaTIiRVZDNy5NTz1qPFJpJS8oMDNhZ2xGR0xBJnE9LTFTJUBwTlZXcmEyT2xBZCtARzpcbz5LOVhgPiImZVskbCg0dTVgMWVuX283SDNCIyQnIk88XzAwOiFIN2RCT1sqaD40VmlFZTlCdDgwPFxAWFlocXFpZy1xIXNAXUYuVWRHcWg0LTRCKlxAIlJcMnFxWDNOOGNHJ3BVT29xaiNaJXJaQGEuNDVTJjRuLzNzcVQ8QmoiYytaV11EY0NdVyw0XDcvLTNFQGw0YCxlZC8uXnE4VVEySSYtOzZmOGQhQz4jXjdHRXBQSThTOC5xQUhVN1o4UD9JN1UlKm84Ol5EUENXZXVVOD5aXSZeUWtVTzMsQj5kTiRfOGdcJz9Hc1MoV0xIXzc/Si9jPnQyTSIuWWRGLUMwRlUhPDY3Rk5VaV5mUGlcMltqRDBVMzJoYVNtUkstck1nUiNQbjlARkdkZFghMUtFaUZTbzU8KDkzZS4tU190OXA1UTo2JDRHXlRKX2ZYXEJOKigzVV9CM1hpTmJvZideIy5AQ2EkJ2xCNSNbVFZjUXI5XVVTcDhmSDwmOTRDb2o8VD4sQSxOcFM2VUVxWj9LYTEuPjkwbSRVJlxbSmdDKztJYWZITz5kV0ZScG84JFNrPTpRZVdeaWdwJTZFXklaQFFGX1JgcDhLbDVPbEVsTCkxVi5fKDIhZkU+XEFQYWZeTWA5KidcOGk3WkMiQVdGOFoyXVciaSs0NyYiJCVOYUlzSFFDOWU2TUdDNERTK0U8J1BdcE9BLTBmXSdhbUhqT3NbUmQjS2xvMWY9dDZMIkhhOmAvWW9TWi4pKClGUV9gMyEkMUdbcjVJRCJwNCtjbi9Tc2dqa14/Jk9BO2hnUGk8azJRUmdQV0skXTBLIT0nR1I2SGhKS0NaRkhgbkQsYT4hOyhjOUZYOVlIMSthKUBzL3A2aEBiX1w/JkEzYzQuZl46YEU+RHNQOklLQSh1Q1BsOEonLjN0KEJhSUI9Q19xVGNnKk9qbXAxMkswM11eVm8yTzpxZzRKQCwqWEtWVT9SPjIwXCQxUjEiOVFvRVNrTTQnVGonSCktSG1JWFtjYENBNXBiKlw6QWBOWTlSJ089MCcjdHF1I0U1dSssVVg4R3InJk4iP0FrQiZSQDxQSytcQiRTLVc6XihmKz5UNEtYKEVgSG9HazZRWD5eQipbSSMwKUdZY00xJjptLW9bLXFVbCdLZV9wLEkmYFg2PkZxNjRDMzxEZWtFSDk+R2xgLDttQyQzJSs3cEhVZGljWkYuOEcsQkNjS1hrZzBAUk1eaGw7LkI8dW1VLkclLzYrOW9ZJi4waFVDQiVKPCFPNWdqYkQ1IT5pXG5sZG8+SjVtTVpRTzVwbmNwOTdNcClEaVNXT2VEcmtbZEpJR0k+SSU8PT9iSmwqTztLTEFxIS0oaTsiczI3JjhBUzw5M2A8KTYlPVJSKS9rcCxnR0k7LSItaS4kNDdjRjA/Q2c0SkldcWNNOCkqTU9zJnFbUi1cJzRlRzQuLE80Xk8wKUNpcSEjbEY/SkhtJCNaNS1mOVo4K1NRUkhPXyktV3I6SEN1YTV0SjQ5JkE4MyxBckMzak1VT2FFNDFaczlMRlBBTCkhSllvRFxRRywhIWBwXjBtUGNhKWFCNSFOODBOJyIuRUxEbT9XZj9ZaWVALDRZPVJVTlFBQFVZTHJuRkw5MjApYUVqXyQ4PV42J1QhcmYuIl8oOEJVP1s6OGsnQVFPZ1c7YF05dVQhYl1gVVhKcWFnJXM0aHQ5VzUzM0c4UE9uU1I7VENbc0grLWlhMG5BUF8yO0smX2tBN29PW2lFazlUPUVXYiJRMSkiNEFuUVJdaGQ2JDleKHIkMXBzSlNwaEFqZigvZSFjTEtAKD9cbURUTUVDMjE6Im5APDcqImJsRkFSKzs9JD0nLFlNVEkoOjJtSnQncFxPOFFLIWZDLCZGNTc6aiNNLXFkcDJGZWhoWk1mOFRiI0wjWClDRUlLJ2VKbUlZbnVWQSNNKk9KalxwZlRiQSM9PSxiXkhqdUdyOnJTVW1rOU4iODJaMmJUbWZUc2ZMWWdTN2BISzBQP3JUbSpsWiRzOTwiKXI6ZF5eUWFRXEJlbmIoRF9fOkgwY00lXiVaRyVJN2BfMGgsXEJWUGVkYU49Y2IjRUdPcE5CQylvXVtVU1hUYUFmOnUwPEY2UVUvYFBmME4tcic/Sz4hQzZpJjMvXlNHOylcZyVRSC44WWRTRlVAdCNgbGdeNmFEOnErMWE4MDY8ZHEzXkNAImdEVjMrTj5CPHMmWVg9YWlPNklbPFBPMlwnMjYyKUpsRjI2aTluczhuLl90W25vRXJLdFZmZm09SSpqYWB0KWFoQi1lOW9tLGFVcmtHJEpKLmxka0wwRTRBZjxOSF1FRk1LW3J1XFAzUWE/VThcX20+cDkuJ14iV2VaNUkuYUE3K3E4RyM6UFpWQ0tWIzAxJk1FNV5ZLlRKQlMzJ0BEJyxtMEo1LyVtUydzSURmb2syLUlyaFZbS24qUi8nTFdKWEQ2W2FSI0M7XT4uMH4+ZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgMTAKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMTIgMDAwMDAgbiAKMDAwMDAwMDIxOSAwMDAwMCBuIAowMDAwMDAwMzMxIDAwMDAwIG4gCjAwMDAwMDA0NDYgMDAwMDAgbiAKMDAwMDAwMDYzOSAwMDAwMCBuIAowMDAwMDAwNzA3IDAwMDAwIG4gCjAwMDAwMDEwMDIgMDAwMDAgbiAKMDAwMDAwMTA2MSAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9JRCAKWzxmNDk5NzMwMDRmZGEyNTdhNWEwOTRmYmRkZTExZGE5MD48ZjQ5OTczMDA0ZmRhMjU3YTVhMDk0ZmJkZGUxMWRhOTA+XQolIFJlcG9ydExhYiBnZW5lcmF0ZWQgUERGIGRvY3VtZW50IC0tIGRpZ2VzdCAob3BlbnNvdXJjZSkKCi9JbmZvIDcgMCBSCi9Sb290IDYgMCBSCi9TaXplIDEwCj4+CnN0YXJ0eHJlZgo1NDcxCiUlRU9GCg=="></a>
 <dialog id="caseDialog" aria-labelledby="dlgTitle">
   <div class="dlg">
     <div class="dlg-top">
@@ -587,28 +586,6 @@ dlg.addEventListener('close', () => { if (lastTrigger) lastTrigger.focus(); });
 
 
 
-
-/* ---------------- résumé download ---------------- */
-(function(){
-  const toast = document.getElementById('toast'); let tt;
-  const say = m => { toast.textContent = m; toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('show'), 2800); };
-  let dl = null;
-  if (window.claude && typeof window.claude.use === 'function') window.claude.use('downloads').then(d => { dl = d; }).catch(() => {});
-  document.querySelectorAll('[data-resume]').forEach(b => b.addEventListener('click', async () => {
-    const a = document.getElementById('resumeFallback');
-    if (!dl) { a.click(); return; }
-    try {
-      const bin = atob(a.href.split(',')[1]); const bytes = new Uint8Array(bin.length);
-      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-      await dl.save({filename:'Nishith_Vadlamudi_Resume.pdf', data: new Blob([bytes])});
-      say('Résumé saved.');
-    } catch (e) {
-      if (e && e.code === 'declined') return;
-      if (e && e.code === 'rate_limited') { say('A save prompt is already open.'); return; }
-      say('Download isn’t available here. Email nishith.vadlamudi.swe@gmail.com for a copy.');
-    }
-  }));
-})();
 
 /* ---------------- split portrait ---------------- */
 (function(){
