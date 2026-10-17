@@ -149,6 +149,9 @@ dialog::backdrop{background:rgba(6,10,18,.62);backdrop-filter:blur(4px)}
 .dlg ul.points{margin:0 0 1.8rem;padding-left:1.1rem}
 .dlg ul.points li{margin:.45rem 0;text-wrap:pretty}
 .dlg ul.points li::marker{color:var(--ember)}
+.dlg-links{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem}
+.dlg-links .btn{padding:.75rem 1.2rem;font-size:.85rem;color:var(--ink)}
+.dlg-links .btn.primary{color:#1A0E05}
 
 /* experience */
 .timeline{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
@@ -463,6 +466,7 @@ git push origin main</div>
     <ul class="points" id="dlgPoints"></ul>
     <h4>Stack</h4>
     <ul class="chips" id="dlgStack"></ul>
+    <div class="dlg-links" id="dlgLinks" hidden></div>
   </div>
 </dialog>
 
@@ -526,6 +530,15 @@ const PROJECTS = [
    after:"Dashboards and alerts catch issues first.",
    points:["Defined dashboards and alarms as code.","Limited retries and added jitter so a slow dependency couldn’t be overwhelmed.","Completed the service’s peak-readiness review."],
    stack:["Java","ECS","SQS","AWS CDK","CloudWatch"]},
+  {id:"vidcite", cat:"personal", when:"Personal project", role:"Retrieval & evaluation",
+   title:"Video Q&A that cites the exact second",
+   blurb:"Ask questions about long tech talks; every claim in the answer links to the moment it’s said.",
+   summary:"A retrieval-augmented question answering system over Creative Commons YouTube talks. Answers come only from the transcripts, and each claim links to the second it’s spoken. I built it eval-first: a 93-question gold set decided which changes shipped.",
+   before:"The right passage ranked first 59% of the time, and citation links landed a median 17 s off.",
+   after:"98% of answers cite the right moment, and off-topic questions are refused every time.",
+   points:["Built hybrid retrieval with pgvector, Postgres full-text search, rank fusion and a cross-encoder reranker; the right passage ranked first went from 59% to 85%.","Wrote a gold eval with a held-out split and let it decide, including rejecting changes that looked good on dev but not on holdout.","Caught silent failures: NaN reranker scores that looked like a valid result, a vector index returning too few candidates, and a delete that never committed.","Kept it working under limits: search-only answers when the LLM quota runs out, per-visitor rate limits and a tested Docker image."],
+   stack:["Python","FastAPI","PostgreSQL","pgvector","Supabase","sentence-transformers","Gemini","Whisper","Docker"],
+   links:[{label:"Try the demo (recorded answers)", href:"https://nishithvadlamudi.github.io/vidcite/"},{label:"Source on GitHub", href:"https://github.com/NishithVadlamudi/vidcite"}]},
   {id:"othello", cat:"personal", when:"Personal project", role:"Full stack",
    title:"Othello multiplayer",
    blurb:"Real-time multiplayer Othello with validated moves synced over WebSockets.",
@@ -578,6 +591,10 @@ grid.addEventListener('click', e => {
   document.getElementById('dlgMetrics').innerHTML = `<div class="before"><dt>Before</dt><dd>${esc(p.before)}</dd></div><div class="after"><dt>After</dt><dd>${esc(p.after)}</dd></div>`;
   document.getElementById('dlgPoints').innerHTML = p.points.map(x => `<li>${esc(x)}</li>`).join('');
   document.getElementById('dlgStack').innerHTML = p.stack.map(x => `<li>${esc(x)}</li>`).join('');
+  const links = document.getElementById('dlgLinks');
+  links.hidden = !(p.links && p.links.length);
+  links.innerHTML = (p.links || []).map((l, i) =>
+    `<a class="btn${i === 0 ? ' primary' : ''}" href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join('');
   if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open','');
 });
 document.getElementById('dlgClose').addEventListener('click', () => dlg.close());
