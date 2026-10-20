@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nishith Vadlamudi · Software Engineer</title>
 <meta name="description" content="Nishith Vadlamudi builds distributed Java services and cloud infrastructure on AWS for a large-scale fulfillment platform.">
-<meta name="theme-color" content="#0D1624">
+<meta name="theme-color" content="#000000">
+<script>try{const t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -324,24 +325,230 @@ dialog[open]::backdrop{animation:dim .3s ease-out}
 @media (max-width:560px){.assist{right:.5rem;left:.5rem;width:auto;bottom:calc(env(safe-area-inset-bottom,0px) + .5rem);height:min(560px,100svh - 5.5rem)}}
 @media (prefers-reduced-motion:reduce){.assist{animation:none}.flash{animation:none;outline:3px solid var(--cyan)}}
 </style>
+<style id="apple-theme">
+/* Apple's own palette and type, from its product pages: #f5f5f7 / white sections, #1d1d1f ink, #6e6e73 secondary,
+   Apple blue for anything interactive; black, #1d1d1f and #2997ff in dark. The hero stays dark, like a Pro page. */
+:root{
+  --bg:#f5f5f7; --bg2:#ffffff; --surface:#ffffff; --ink:#1d1d1f; --muted:#6e6e73; --line:rgba(0,0,0,.08);
+  --ember:#0071e3; --glow:#0077ed; --cyan:#0066cc; --violet:#bf4800; --mesh:#e8e8ed; --hero-ink:#f5f5f7;
+  --mono:var(--display); --shadow:0 2px 8px rgba(0,0,0,.04),0 12px 32px -12px rgba(0,0,0,.10);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#000000; --bg2:#161617; --surface:#1d1d1f; --ink:#f5f5f7; --muted:#86868b; --line:rgba(255,255,255,.12);
+    --ember:#2997ff; --glow:#47a9ff; --cyan:#2997ff; --mesh:#2c2c2e; --shadow:none}
+}
+:root[data-theme="dark"]{--bg:#000000; --bg2:#161617; --surface:#1d1d1f; --ink:#f5f5f7; --muted:#86868b; --line:rgba(255,255,255,.12);
+  --ember:#2997ff; --glow:#47a9ff; --cyan:#2997ff; --mesh:#2c2c2e; --shadow:none}
+body{font-size:1.0625rem;letter-spacing:-.022em;line-height:1.47}
+::selection{background:color-mix(in oklab,var(--ember) 28%,transparent)}
+
+/* global nav: apple.com's dark frosted bar on every section */
+.site-header,.site-header.scrolled{background:rgba(22,22,23,.8);border-bottom:0;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
+.bar{height:56px;width:min(1080px,100% - 2.5rem)}
+.logo{color:#f5f5f7;font-size:1.05rem;font-weight:600;letter-spacing:-.02em;gap:0}
+.logo-mark,.cursor{display:none}
+.nav a{color:rgba(245,245,247,.8);font-size:.8rem;letter-spacing:-.01em;padding:.3rem 0}
+.nav a:hover,.nav a[aria-current="true"]{color:#fff}
+.nav a::after{display:none}
+.resume-btn{background:#0071e3;border:0;color:#fff;font-size:.78rem;font-weight:500;padding:.38rem .9rem}
+.resume-btn:hover{background:#0077ed;color:#fff}
+.icon-link{border:0;color:rgba(245,245,247,.85)}.icon-link:hover{color:#fff}
+.menu-btn{border:0;color:#f5f5f7;font-size:.85rem}
+@media (max-width:900px){.nav{background:rgba(22,22,23,.96)}}
+
+/* hero: dark like a Pro page; the name in titanium, the two sides in warm and cool */
+.hero{--muted:#a1a1a6;--line:rgba(255,255,255,.14);
+  background:radial-gradient(50% 60% at calc(var(--split) - 20%) 62%,rgba(255,159,10,.20),transparent 72%),
+             radial-gradient(50% 60% at calc(var(--split) + 20%) 62%,rgba(41,151,255,.18),transparent 72%),#000}
+.name{font-weight:700;letter-spacing:-.04em;text-shadow:none}
+/* the gradient goes on the glyphs themselves: they rise in on their own transform, which a parent's clip would miss */
+.name span i{background:linear-gradient(180deg,#ffffff 15%,#c7c7cc 60%,#8e8e93 100%);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.04em}
+.side .word{font-weight:600;letter-spacing:-.03em}
+.side.left .word{background:linear-gradient(90deg,#ff9f0a,#ff375f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.side.right .word{background:linear-gradient(90deg,#2997ff,#5e5ce6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.side.right .br{color:#2997ff;-webkit-text-fill-color:#2997ff}
+.hero-foot{background:rgba(0,0,0,.55);border-top-color:rgba(255,255,255,.1)}
+.proof dt{font-size:.75rem;letter-spacing:0}
+.proof dd{font-weight:600;color:#f5f5f7}
+.blend{font-size:.75rem}
+.blend input{accent-color:#2997ff}
+
+/* sections alternate surfaces instead of drawing rules */
+section.block{border-top:0;padding:clamp(5rem,11vw,8.5rem) 0}
+#expertise,#experience{background:var(--bg2)}
+#work,#contact{background:var(--bg)}
+.kicker{font-size:1.2rem;font-weight:600;color:var(--muted);letter-spacing:-.01em;margin-bottom:.6rem}
+h2{font-weight:600;letter-spacing:-.03em;line-height:1.05;font-size:clamp(2.5rem,5.6vw,4.5rem)}
+.lede{font-size:1.25rem;line-height:1.42;letter-spacing:-.015em}
+
+/* expertise: three cards, not a ruled table */
+.pillars{border:0;gap:1.25rem;overflow:visible}
+.pillar{background:var(--bg);border-radius:28px;padding:2.4rem 2.1rem}
+.pillar + .pillar{border:0}
+.pillar svg{color:var(--ember)}
+.pillar h3{font-weight:600;letter-spacing:-.02em}
+.chips li{border:0;background:var(--bg2);font-size:.75rem;font-weight:500;padding:.32rem .7rem;color:var(--ink)}
+.stack h4{font-size:.85rem;font-weight:600;color:var(--ink)}
+
+/* work: borderless cards with a soft shadow */
+.filters button{border:0;background:color-mix(in oklab,var(--ink) 6%,transparent);color:var(--ink);font-size:.85rem;font-weight:500}
+.filters button:hover{background:color-mix(in oklab,var(--ink) 11%,transparent);color:var(--ink)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg2)}
+.case button{border:0;border-radius:28px;background:var(--surface);box-shadow:var(--shadow)}
+.case button::before{display:none}
+.case button:hover{box-shadow:0 4px 12px rgba(0,0,0,.05),0 24px 48px -16px rgba(0,0,0,.18)}
+.case .meta{font-size:.78rem;font-weight:500}
+.case .meta b{font-weight:600;text-transform:capitalize}
+.case h3{font-weight:600;letter-spacing:-.022em}
+.case .figure .after{font-weight:600}
+.case .shot{border-radius:28px 28px 0 0}
+
+/* project sheet */
+dialog{border:0;border-radius:28px;background:var(--surface)}
+dialog::backdrop{background:rgba(0,0,0,.42);backdrop-filter:blur(20px) saturate(140%)}
+.dlg .meta{font-size:.85rem;font-weight:600}
+.dlg h3{font-weight:600;letter-spacing:-.03em}
+.dlg h4{font-size:.85rem;font-weight:600;color:var(--ink)}
+.close{border:0;background:color-mix(in oklab,var(--ink) 8%,transparent)}
+.close:hover{color:var(--ink);background:color-mix(in oklab,var(--ink) 14%,transparent)}
+.metrics{border:0;border-radius:18px;background:var(--line)}
+.metrics div{background:var(--bg)}
+.metrics dt{font-size:.75rem;font-weight:600}
+.dlg-video{border-radius:18px}
+
+/* experience */
+.job h3{font-weight:600;letter-spacing:-.02em}
+.job .when{font-size:.85rem}
+.job .where{font-size:.95rem;font-weight:500}
+.cadence{border:0;border-radius:28px;background:var(--bg)}
+.chart text{font-family:var(--display)}
+
+/* buttons: Apple's pills, blue for the action, outlined blue for the rest */
+.btn{font-size:1.0625rem;font-weight:400;letter-spacing:-.022em;padding:.8rem 1.5rem;border-radius:980px}
+.btn.primary,.dlg-links .btn.primary{background:#0071e3;border-color:#0071e3;color:#fff}
+.btn.primary:hover{background:#0077ed;border-color:#0077ed}
+.btn:not(.primary){border-color:var(--cyan);color:var(--cyan)}
+.btn:not(.primary):hover{background:var(--cyan);color:#fff}
+.dlg-links .btn{font-size:.95rem}
+footer{border-top:0;background:var(--bg);font-size:.75rem}
+.toast{font-family:var(--display)}
+
+/* assistant, in the same language */
+.ask-fab{border:0;font-weight:500;letter-spacing:-.015em}
+.assist{border:0;border-radius:28px}
+.assist-top small,.assist-foot,.msg.a .note,.msg.wait{font-family:var(--display);letter-spacing:0}
+.msg.q{background:#0071e3;color:#fff}
+.cite{font-family:var(--display);background:color-mix(in oklab,var(--ember) 16%,transparent);color:var(--cyan)}
+.chips-ask button{border:0;background:color-mix(in oklab,var(--ink) 6%,transparent)}
+.chips-ask button:hover{color:var(--ink);background:color-mix(in oklab,var(--ink) 11%,transparent)}
+.assist .ico.send{background:#0071e3;border-color:#0071e3;color:#fff}
+.ask-top{border:1px solid rgba(245,245,247,.35);background:transparent;color:#f5f5f7;border-radius:980px;font:500 .78rem var(--display);padding:.34rem .85rem;cursor:pointer;transition:background .2s}
+.ask-top:hover{background:rgba(245,245,247,.12)}
+.logo,.ask-top{white-space:nowrap}
+@media (max-width:420px){.logo{font-size:.95rem}.ask-top{padding:.34rem .7rem}.bar{width:calc(100% - 1.5rem)}}
+.ask-top:active{transform:scale(.96)}
+/* the floating button waits until the hero has scrolled away, so it never covers the slider or the hero text */
+.ask-fab{transition:opacity .25s,transform .25s}
+.ask-fab.away{opacity:0;transform:translateY(12px);pointer-events:none;visibility:hidden}
+/* round 2: theme toggle, Siri, icon chips, calmer cards */
+.theme-btn{background:transparent;padding:0;cursor:pointer}
+.theme-btn svg{display:none;width:18px;height:18px}
+.theme-btn[data-mode="auto"] .auto,.theme-btn[data-mode="light"] .light,.theme-btn[data-mode="dark"] .dark{display:block}
+.chips li{display:inline-flex;align-items:center;gap:.42rem}
+.chips img{width:16px;height:16px;flex:none;object-fit:contain}
+.chips img[src*="wordmark"]{width:22px}
+:root[data-theme="dark"] .chips img.inv{filter:invert(1) hue-rotate(180deg)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chips img.inv{filter:invert(1) hue-rotate(180deg)}}
+.stack{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem 3rem}
+.stack h4{margin-bottom:.7rem}
+.stack .chips li{background:var(--bg)}
+
+.case button{min-height:0;padding:1.9rem 1.9rem 1.7rem}
+.case .meta{margin:0 0 1.2rem;padding:0}
+.case .stat{display:block;margin:0 0 1.1rem}
+.case .stat strong{display:block;font-size:clamp(2.3rem,3.4vw,3rem);font-weight:600;letter-spacing:-.035em;line-height:1;color:var(--ember);font-variant-numeric:tabular-nums}
+.case .stat span{display:block;margin-top:.5rem;font-size:.92rem;color:var(--muted);line-height:1.35}
+.case h3{font-size:1.3rem;margin:0 0 .45rem}
+.case p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin:0 0 1.3rem;font-size:.95rem}
+.case .more{margin-top:auto;color:var(--cyan);font-size:.95rem;font-weight:500}
+.case button:hover .more{text-decoration:underline}
+/* the featured project: one full-width tile, video left, story right */
+.case.full{grid-column:1/-1}
+.case.full button{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);column-gap:2.4rem;align-content:center;padding:0 2.4rem 0 0}
+.case.full .shot{grid-row:1 / span 6;margin:0;height:100%;aspect-ratio:auto;min-height:360px;border-radius:28px 0 0 28px}
+.case.full .meta{margin-top:2.2rem}
+.case.full .more{margin:0 0 2.2rem}
+.case.full .stat strong{font-size:clamp(2.8rem,4.4vw,3.8rem)}
+@media (max-width:980px){.case.full button{display:flex;padding:1.9rem 1.9rem 1.7rem}.case.full .shot{margin:-1.9rem -1.9rem 1.4rem;min-height:0;aspect-ratio:16/9;border-radius:28px 28px 0 0}.case.full .meta{margin-top:0}.case.full .more{margin:auto 0 0}}
+
+/* Siri: the orb, the glowing panel edge while thinking, the screen edge while listening or speaking */
+@property --siri{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes siriSpin{to{--siri:360deg}}
+@keyframes siriPulse{from{transform:scale(1)}to{transform:scale(1.18)}}
+@keyframes siriGlow{0%,100%{box-shadow:0 0 34px 2px rgba(255,55,95,.45)}25%{box-shadow:0 0 34px 2px rgba(191,90,242,.45)}50%{box-shadow:0 0 34px 2px rgba(10,132,255,.45)}75%{box-shadow:0 0 34px 2px rgba(100,210,255,.45)}}
+/* macOS Siri: a dark glass sphere, coloured petals turning around a white-hot core */
+.siri-orb{position:relative;display:inline-block;width:18px;height:18px;border-radius:50%;flex:none;overflow:hidden;isolation:isolate;
+  background:radial-gradient(circle at 50% 55%,#2b1d44 0%,#120d1f 55%,#050508 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 0 10px rgba(130,90,255,.35)}
+.siri-orb::before{content:"";position:absolute;inset:6%;border-radius:50%;z-index:-1;
+  background:conic-gradient(from var(--siri),#ff375f 0deg 38deg,transparent 38deg 58deg,#ff9f0a 58deg 92deg,transparent 92deg 112deg,#30d158 112deg 150deg,transparent 150deg 170deg,
+    #64d2ff 170deg 214deg,transparent 214deg 232deg,#0a84ff 232deg 276deg,transparent 276deg 294deg,#bf5af2 294deg 340deg,transparent 340deg 360deg);
+  -webkit-mask:radial-gradient(circle,#000 8%,rgba(0,0,0,.85) 30%,transparent 68%);mask:radial-gradient(circle,#000 8%,rgba(0,0,0,.85) 30%,transparent 68%);
+  filter:blur(.9px) saturate(1.3);animation:siriSpin 5s linear infinite}
+.siri-orb.big::before{filter:blur(2.2px) saturate(1.4)}
+.siri-orb::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 50% 52%,rgba(255,255,255,.95) 0 5%,rgba(255,255,255,.35) 11%,transparent 22%),
+             radial-gradient(ellipse 45% 30% at 38% 22%,rgba(255,255,255,.28),transparent 70%)}
+.siri-orb.big{width:36px;height:36px}
+.ask-top{display:inline-flex;align-items:center;gap:.45rem}
+.ask-top .siri-orb{width:14px;height:14px}
+.assist-top{justify-content:flex-start;gap:.8rem}
+.assist-top .assist-name{flex:1}
+.assist[data-state="listening"] .siri-orb.big{animation:siriPulse .6s ease-in-out infinite alternate}
+.assist:not([data-state="idle"]) .siri-orb.big::before{animation-duration:1.4s}
+/* while it listens, thinks or speaks, the whole panel fills with Siri's colours, turning slowly behind the text */
+.assist{isolation:isolate;overflow:hidden}
+.assist::before{content:"";position:absolute;inset:-35%;z-index:-1;pointer-events:none;opacity:0;transition:opacity .6s ease;
+  background:conic-gradient(from var(--siri),rgba(255,55,95,.55),rgba(255,159,10,.45),rgba(48,209,88,.4),rgba(100,210,255,.5),rgba(10,132,255,.55),rgba(191,90,242,.55),rgba(255,55,95,.55));
+  filter:blur(46px);animation:siriSpin 7s linear infinite}
+.assist:not([data-state="idle"])::before{opacity:.75}
+.assist:not([data-state="idle"]) .assist-top,.assist:not([data-state="idle"]) form{border-color:transparent}
+.assist[data-state="thinking"],.assist[data-state="listening"],.assist[data-state="speaking"]{border:2px solid transparent;
+  background:linear-gradient(var(--surface),var(--surface)) padding-box,conic-gradient(from var(--siri),#ff375f,#bf5af2,#0a84ff,#64d2ff,#ff9f0a,#ff375f) border-box;
+  animation:siriSpin 2.4s linear infinite,siriGlow 4s ease-in-out infinite}
+.siri-edge{position:fixed;inset:0;z-index:59;pointer-events:none;opacity:0;transition:opacity .45s;padding:9px;
+  background:conic-gradient(from var(--siri),#ff375f,#bf5af2,#0a84ff,#64d2ff,#30d158,#ff9f0a,#ff375f);
+  -webkit-mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  filter:blur(12px);animation:siriSpin 4s linear infinite}
+.siri-edge.on{opacity:1}
+@media (prefers-reduced-motion:reduce){.siri-orb,.siri-orb::before,.siri-edge,.assist[data-state],.assist::before{animation:none!important}.siri-orb.big{transform:none}}
+@media (prefers-reduced-transparency:reduce){.site-header,.site-header.scrolled{background:#161617;backdrop-filter:none;-webkit-backdrop-filter:none}}
+@media (prefers-contrast:more){:root{--muted:#3a3a3c}.case button{box-shadow:0 0 0 1px currentColor}}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="site-header" id="top">
   <div class="bar">
-    <a class="logo" href="#home" aria-label="Nishith Vadlamudi, back to top"><span class="logo-mark" aria-hidden="true"></span><span translate="no">NishithV.<span class="cursor">_</span></span></a>
+    <a class="logo" href="#home" aria-label="Nishith Vadlamudi, back to top"><span class="logo-mark" aria-hidden="true"></span><span translate="no">Nishith Vadlamudi</span></a>
     <div class="head-actions">
-    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">// menu</button>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav" aria-label="Sections">
       <ol>
-        <li><a href="#home"><span class="n">01</span>// home</a></li>
-        <li><a href="#expertise"><span class="n">02</span>// expertise</a></li>
-        <li><a href="#work"><span class="n">03</span>// work</a></li>
-        <li><a href="#experience"><span class="n">04</span>// experience</a></li>
-        <li><a href="#contact"><span class="n">05</span>// contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ol>
     </nav>
+    <button class="icon-link theme-btn" type="button" id="themeBtn" data-mode="auto" aria-label="Theme: automatic" title="Theme: automatic">
+      <svg class="auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>
+      <svg class="light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+    <button class="ask-top" type="button" id="askTop" aria-controls="assist"><span class="siri-orb" aria-hidden="true"></span>Ask about me</button>
     <a class="resume-btn" href="Nishith_Vadlamudi_Resume.pdf" download="Nishith_Vadlamudi_Resume.pdf">Download résumé</a>
     <a class="icon-link" href="https://github.com/NishithVadlamudi" target="_blank" rel="noopener noreferrer" aria-label="Nishith on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg></a>
     </div>
@@ -381,7 +588,7 @@ dialog[open]::backdrop{animation:dim .3s ease-out}
 
   <section class="block" id="expertise" aria-labelledby="exp-h">
     <div class="wrap">
-      <p class="kicker">// expertise<span class="n">02</span></p>
+      <p class="kicker">Expertise</p>
       <h2 id="exp-h" class="reveal">Back-end systems that stay up when traffic doesn’t stay flat.</h2>
       <p class="lede reveal">About 3 years building Java services and cloud infrastructure on AWS for large-scale systems, plus a Master’s in Computer Science from George Mason University.</p>
 
@@ -390,35 +597,35 @@ dialog[open]::backdrop{animation:dim .3s ease-out}
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="10" cy="24" r="5"/><circle cx="38" cy="10" r="5"/><circle cx="38" cy="38" r="5"/><path d="M15 22l18-10M15 26l18 10M38 15v18"/></svg>
           <h3>Distributed back end</h3>
           <p>Event-driven Java services, workflow orchestration and SDKs, designed so retries, partial failures and duplicate messages are handled on purpose.</p>
-          <ul class="chips"><li>Java</li><li>TypeScript</li><li>SQS</li><li>Idempotency</li><li>Backoff &amp; jitter</li><li>Concurrency</li></ul>
+          <ul class="chips"><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/java/java-original.svg" alt="" width="16" height="16" loading="lazy">Java</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/typescript/typescript-original.svg" alt="" width="16" height="16" loading="lazy">TypeScript</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="" width="16" height="16" loading="lazy" class="inv">SQS</li><li>Idempotency</li><li>Backoff &amp; jitter</li><li>Concurrency</li></ul>
         </article>
         <article class="pillar">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 36h22a9 9 0 0 0 1-17.9A12 12 0 0 0 14 17a9.5 9.5 0 0 0 0 19z"/><path d="M20 27h10M25 22v10"/></svg>
           <h3>Cloud infrastructure</h3>
           <p>Serverless and container workloads defined as code, with caching and capacity planning for heavy traffic.</p>
-          <ul class="chips"><li>AWS Lambda</li><li>ECS &amp; Fargate</li><li>DynamoDB</li><li>API Gateway</li><li>AWS CDK</li><li>Terraform</li></ul>
+          <ul class="chips"><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="" width="16" height="16" loading="lazy" class="inv">AWS Lambda</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="" width="16" height="16" loading="lazy" class="inv">ECS &amp; Fargate</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/dynamodb/dynamodb-original.svg" alt="" width="16" height="16" loading="lazy">DynamoDB</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="" width="16" height="16" loading="lazy" class="inv">API Gateway</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="" width="16" height="16" loading="lazy" class="inv">AWS CDK</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/terraform/terraform-original.svg" alt="" width="16" height="16" loading="lazy">Terraform</li></ul>
         </article>
         <article class="pillar">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M24 5l16 6v12c0 10-7 17-16 20C15 40 8 33 8 23V11z"/><path d="M17 24l5 5 9-10"/></svg>
           <h3>Reliability &amp; delivery</h3>
           <p>Canaries, alarms and deployment gates that catch bad releases before customers do, and roll them back automatically when they slip through.</p>
-          <ul class="chips"><li>Canary deploys</li><li>CloudWatch</li><li>Load testing</li><li>CI/CD</li><li>Incident triage</li></ul>
+          <ul class="chips"><li>Canary deploys</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="" width="16" height="16" loading="lazy" class="inv">CloudWatch</li><li>Load testing</li><li>CI/CD</li><li>Incident triage</li></ul>
         </article>
       </div>
 
       <div class="stack reveal">
-        <div><h4>Languages</h4><p>Java, Python, TypeScript, JavaScript, SQL, Go, C++, HTML, CSS</p></div>
-        <div><h4>Back end</h4><p>Spring Boot, REST APIs, microservices, API design, JDBC, Hibernate</p></div>
-        <div><h4>Data</h4><p>DynamoDB, MySQL, MS SQL Server, Redis, query optimization</p></div>
-        <div><h4>Quality &amp; security</h4><p>JUnit, Mockito, TDD, design review, OAuth 2.0, JWT, secure coding</p></div>
-        <div><h4>Operations</h4><p>Git, Docker, Kubernetes, CloudWatch, debugging, on-call</p></div>
+        <div><h4>Languages</h4><ul class="chips"><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/java/java-original.svg" alt="" width="16" height="16" loading="lazy">Java</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/python/python-original.svg" alt="" width="16" height="16" loading="lazy">Python</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/typescript/typescript-original.svg" alt="" width="16" height="16" loading="lazy">TypeScript</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/javascript/javascript-original.svg" alt="" width="16" height="16" loading="lazy">JavaScript</li><li>SQL</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/go/go-original-wordmark.svg" alt="" width="16" height="16" loading="lazy">Go</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/cplusplus/cplusplus-original.svg" alt="" width="16" height="16" loading="lazy">C++</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/html5/html5-original.svg" alt="" width="16" height="16" loading="lazy">HTML</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/css3/css3-original.svg" alt="" width="16" height="16" loading="lazy">CSS</li></ul></div>
+        <div><h4>Back end</h4><ul class="chips"><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/spring/spring-original.svg" alt="" width="16" height="16" loading="lazy">Spring Boot</li><li>REST APIs</li><li>microservices</li><li>API design</li><li>JDBC</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/hibernate/hibernate-original.svg" alt="" width="16" height="16" loading="lazy" class="inv">Hibernate</li></ul></div>
+        <div><h4>Data</h4><ul class="chips"><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/dynamodb/dynamodb-original.svg" alt="" width="16" height="16" loading="lazy">DynamoDB</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mysql/mysql-original.svg" alt="" width="16" height="16" loading="lazy" class="inv">MySQL</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/microsoftsqlserver/microsoftsqlserver-original.svg" alt="" width="16" height="16" loading="lazy" class="inv">MS SQL Server</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/redis/redis-original.svg" alt="" width="16" height="16" loading="lazy">Redis</li><li>query optimization</li></ul></div>
+        <div><h4>Quality &amp; security</h4><ul class="chips"><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/junit/junit-original.svg" alt="" width="16" height="16" loading="lazy">JUnit</li><li>Mockito</li><li>TDD</li><li>design review</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/oauth/oauth-original.svg" alt="" width="16" height="16" loading="lazy" class="inv">OAuth 2.0</li><li>JWT</li><li>secure coding</li></ul></div>
+        <div><h4>Operations</h4><ul class="chips"><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/git/git-original.svg" alt="" width="16" height="16" loading="lazy">Git</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/docker/docker-original.svg" alt="" width="16" height="16" loading="lazy">Docker</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/kubernetes/kubernetes-original.svg" alt="" width="16" height="16" loading="lazy">Kubernetes</li><li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="" width="16" height="16" loading="lazy" class="inv">CloudWatch</li><li>debugging</li><li>on-call</li></ul></div>
       </div>
     </div>
   </section>
 
   <section class="block" id="work" aria-labelledby="work-h">
     <div class="wrap">
-      <p class="kicker">// work<span class="n">03</span></p>
+      <p class="kicker">Work</p>
       <h2 id="work-h" class="reveal">Selected work, told as before and after.</h2>
       <p class="lede reveal">Open any project to see the problem, what changed and how it was built.</p>
       <div class="filters" role="group" aria-label="Filter projects">
@@ -434,7 +641,7 @@ dialog[open]::backdrop{animation:dim .3s ease-out}
 
   <section class="block" id="experience" aria-labelledby="xp-h">
     <div class="wrap">
-      <p class="kicker">// experience<span class="n">04</span></p>
+      <p class="kicker">Experience</p>
       <h2 id="xp-h" class="reveal">Where the work happened.</h2>
       <p class="lede reveal">From enterprise web apps to large-scale cloud systems.</p>
       <ol class="timeline">
@@ -470,7 +677,7 @@ dialog[open]::backdrop{animation:dim .3s ease-out}
 
   <section class="block contact" id="contact" aria-labelledby="ct-h">
     <div class="wrap">
-      <p class="kicker">// contact<span class="n">05</span></p>
+      <p class="kicker">Contact</p>
       <h2 id="ct-h" class="reveal">Let’s build something reliable.</h2>
       <p class="lede reveal">Open to software engineering roles in distributed systems, back-end platforms and cloud infrastructure. Based in Bellevue, WA.</p>
       <div class="cta-row reveal">
@@ -518,7 +725,7 @@ dialog[open]::backdrop{animation:dim .3s ease-out}
 <script>
 /* ---------------- data ---------------- */
 const PROJECTS = [
-  {id:"vidcite", cat:"personal", wide:true, loop:"https://nishithvadlamudi.github.io/vidcite/vidcite-launch.mp4", poster:"assets/vidcite-poster.webp", video:"https://nishithvadlamudi.github.io/vidcite/vidcite-demo.mp4", when:"Personal project", role:"Retrieval & evaluation",
+  {id:"vidcite", stat:"85%", statLabel:"right passage ranked first, up from 64%", cat:"personal", full:true, loop:"https://nishithvadlamudi.github.io/vidcite/vidcite-launch.mp4", poster:"assets/vidcite-poster.webp", video:"https://nishithvadlamudi.github.io/vidcite/vidcite-demo.mp4", when:"Personal project", role:"Retrieval & evaluation",
    title:"Video Q&A that cites the exact second",
    blurb:"Ask questions about long tech talks; every claim in the answer links to the moment it’s said.",
    summary:"A retrieval-augmented question answering system over Creative Commons YouTube talks. Answers come only from the transcripts, and each claim links to the second it’s spoken. I built it eval-first: a 93-question gold set decided which changes shipped.",
@@ -527,7 +734,7 @@ const PROJECTS = [
    points:["Built hybrid retrieval with pgvector, Postgres full-text search, rank fusion and a cross-encoder reranker; the right passage ranked first went from 59% to 85%.","Wrote a gold eval with a held-out split and let it decide, including rejecting changes that looked good on dev but not on holdout.","Caught silent failures: NaN reranker scores that looked like a valid result, a vector index returning too few candidates, and a delete that never committed.","Kept it working under limits: search-only answers when the LLM quota runs out, per-visitor rate limits and a tested Docker image."],
    stack:["Python","FastAPI","PostgreSQL","pgvector","Supabase","sentence-transformers","Gemini","Whisper","Docker"],
    links:[{label:"Try the demo", href:"https://nishithvadlamudi.github.io/vidcite/"},{label:"Source on GitHub", href:"https://github.com/NishithVadlamudi/vidcite"}]},
-  {id:"v2", cat:"platform", when:"2026", role:"Engineer",
+  {id:"v2", stat:"0", statLabel:"client impact at launch, after fixing 9 defects", cat:"platform", when:"2026", role:"Engineer",
    title:"Launching a new API version",
    blurb:"Tracked down why a new API version wasn’t working and got it launched without disrupting existing clients.",
    summary:"Part of a cross-team effort to roll out a new version of a core API. I worked across the SDK, messaging and service layers to find and fix what was blocking the launch.",
@@ -535,7 +742,7 @@ const PROJECTS = [
    after:"9 defects behind 100% call failures fixed; launched with zero client impact.",
    points:["Root-caused issues spanning routing, credentials and serialization.","Made message handling version-aware so each version reaches the right code path.","Kept existing dashboards working through the migration.","Upgraded a shared Java SDK to a newer JDK and build toolchain."],
    stack:["Java","Smithy","SQS","DynamoDB","ECS","AWS Lambda","JUnit","Mockito"]},
-  {id:"graceful", cat:"reliability", wide:true, when:"2026", role:"Design lead",
+  {id:"graceful", stat:"1,000+", statLabel:"stuck shipments recovered every week", cat:"reliability", when:"2026", role:"Design lead",
    title:"Failure handling for a workflow platform",
    blurb:"Designed how a high-volume workflow platform handles failures, so problems resolve on their own instead of waiting for someone to clean them up.",
    summary:"When one step in a multi-step workflow failed, the whole run could hang until an engineer stepped in. I designed and led a change so failures are collected, the run closes in a clear state, and the right team hears about it.",
@@ -543,7 +750,7 @@ const PROJECTS = [
    after:"1,000+ stuck shipments recovered every week, across 5 failure scenarios.",
    points:["Wrote the requirements and design, covering each failure scenario, and took it through design review.","Built error collection and a safe default so existing users benefited without changing anything.","Rolled it out in phases so every step could be undone quickly.","Added fault injection and integration tests to prove each failure path worked."],
    stack:["Java","TypeScript","AWS Lambda","Workflow orchestration","AWS CDK","CloudWatch"]},
-  {id:"load", cat:"scale", when:"2026", role:"Owner",
+  {id:"load", stat:"4.7×", statLabel:"projected peak validated, zero sustained errors", cat:"scale", when:"2026", role:"Owner",
    title:"Getting ready for peak traffic",
    blurb:"Modeled expected peak traffic and load-tested the system well past it before the busiest season of the year.",
    summary:"Built a traffic model from real usage patterns, used it to plan capacity with partner teams, then ran a full-scale load test to confirm the system held up.",
@@ -551,7 +758,7 @@ const PROJECTS = [
    after:"4.7× projected peak validated across 12.7M invocations, zero sustained errors.",
    points:["Turned per-location traffic into per-API capacity needs.","Ran a sustained, full-system load test and reviewed latency, errors and throttling.","Found the one bottleneck, which sat outside the system, and got it fixed."],
    stack:["AWS Lambda","ECS","DynamoDB","CloudWatch","Load testing"]},
-  {id:"canary", cat:"reliability", when:"2026", role:"Owner",
+  {id:"canary", stat:"Every region", statLabel:"rolls a failing release back automatically", cat:"reliability", when:"2026", role:"Owner",
    title:"Safer releases with canary testing",
    blurb:"Added automated end-to-end tests that run in every production region and roll back a release when they fail.",
    summary:"Set up synthetic tests that exercise the whole system continuously, and made them part of the release pipeline.",
@@ -559,7 +766,7 @@ const PROJECTS = [
    after:"Failing releases roll back automatically in every region.",
    points:["Moved the test runner to containers so longer test suites could run.","Added switches to turn tests, alarms and release gates on one stage at a time.","Connected test failures to automatic rollback."],
    stack:["AWS Fargate","AWS CDK","CloudWatch","CI/CD","TypeScript"]},
-  {id:"cli", cat:"platform", when:"2026", role:"Author",
+  {id:"cli", stat:"96%", statLabel:"faster: 30 minutes per site to under 1 minute", cat:"platform", when:"2026", role:"Author",
    title:"One-command site setup",
    blurb:"Replaced a multi-step manual setup with a command-line tool that’s safe to re-run.",
    summary:"A small tool that sets up new locations in bulk and skips anything already done, so a failed run can simply be run again.",
@@ -567,7 +774,7 @@ const PROJECTS = [
    after:"30 minutes per site to under 1 minute for all sites: 96% faster.",
    points:["Designed it to be idempotent, so re-running is always safe.","Added bulk runs and a command for moving a location.","Documented failure scenarios and how the tool handles each."],
    stack:["TypeScript","DynamoDB","Infrastructure as code"]},
-  {id:"cache", cat:"scale", when:"2025", role:"Engineer",
+  {id:"cache", stat:"99.97%", statLabel:"token cache hit rate under sustained load", cat:"scale", when:"2025", role:"Engineer",
    title:"Caching and safer writes",
    blurb:"Cut repeated auth calls with a token cache, and made batch database writes retry safely instead of losing data.",
    summary:"Two small changes with outsized effect: stop fetching the same token over and over, and make sure partially failed writes get retried.",
@@ -575,7 +782,7 @@ const PROJECTS = [
    after:"99.97% token cache hit rate under sustained load; failed writes retried.",
    points:["Compared storage options, then chose a simpler in-memory cache that respects token expiry.","Retried partially failed batch writes with exponential backoff and jitter."],
    stack:["TypeScript","AWS Lambda","DynamoDB","JWT"]},
-  {id:"route", cat:"reliability", when:"2025", role:"Service owner",
+  {id:"route", stat:"Alerts first", statLabel:"dashboards and alarms catch issues before tickets do", cat:"reliability", when:"2025", role:"Service owner",
    title:"Monitoring a routing service",
    blurb:"Gave a routing service real dashboards, alerts and sensible retries ahead of its first busy season.",
    summary:"Took ownership of a service with little visibility and got it ready for heavy traffic.",
@@ -583,7 +790,7 @@ const PROJECTS = [
    after:"Dashboards and alerts catch issues first.",
    points:["Defined dashboards and alarms as code.","Limited retries and added jitter so a slow dependency couldn’t be overwhelmed.","Completed the service’s peak-readiness review."],
    stack:["Java","ECS","SQS","AWS CDK","CloudWatch"]},
-  {id:"othello", cat:"personal", when:"Personal project", role:"Full stack",
+  {id:"othello", stat:"<100 ms", statLabel:"to sync a validated move between players", cat:"personal", when:"Personal project", role:"Full stack",
    title:"Othello multiplayer",
    blurb:"Real-time multiplayer Othello with validated moves synced over WebSockets.",
    summary:"A multiplayer web game with an Angular front end and Spring Boot services.",
@@ -591,7 +798,7 @@ const PROJECTS = [
    after:"Moves sync in under 100 ms, with 95% test coverage.",
    points:["REST and WebSocket services backed by MySQL, containerized with Docker.","JWT with one-time-password sign-in.","Test-driven with Jasmine and Karma."],
    stack:["Angular","TypeScript","Spring Boot","WebSockets","MySQL","Docker"]},
-  {id:"concrete", cat:"personal", when:"Personal project", role:"Machine learning",
+  {id:"concrete", stat:"0.90 R²", statLabel:"random forest, 51% less error than linear", cat:"personal", when:"Personal project", role:"Machine learning",
    title:"Concrete strength prediction",
    blurb:"Compared 5 regression models to predict concrete strength from its mix.",
    summary:"A machine learning study predicting concrete compressive strength from mix composition.",
@@ -606,13 +813,14 @@ const PROJECTS = [
 const grid = document.getElementById('workGrid');
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 grid.innerHTML = PROJECTS.map(p => `
-  <article class="case${p.wide ? ' wide' : ''}" data-cat="${p.cat}">
+  <article class="case${p.full ? ' full' : p.wide ? ' wide' : ''}" data-cat="${p.cat}">
     <button type="button" data-id="${p.id}" aria-haspopup="dialog">${p.loop ? `
       <span class="shot"><video src="${esc(p.loop)}" poster="${esc(p.poster)}" muted loop playsinline preload="none" aria-hidden="true"></video></span>` : ''}
-      <span class="meta"><b>${esc(p.cat)}</b><span>${esc(p.when)}</span></span>
+      <span class="meta"><b>${esc(p.cat)}</b></span>
+      <span class="stat"><strong>${esc(p.stat)}</strong><span>${esc(p.statLabel)}</span></span>
       <h3>${esc(p.title)}</h3>
       <p>${esc(p.blurb)}</p>
-      <span class="figure"><span class="after">${esc(p.after)}</span></span>
+      <span class="more" aria-hidden="true">Learn more ›</span>
     </button>
   </article>`).join('');
 
@@ -682,6 +890,20 @@ dlg.addEventListener('close', () => { if (lastTrigger) lastTrigger.focus(); });
   }
 })();
 
+/* ---------------- theme: automatic, light or dark, remembered ---------------- */
+(() => {
+  const btn = document.getElementById('themeBtn'), root = document.documentElement;
+  const NEXT = {auto:'light', light:'dark', dark:'auto'}, LABEL = {auto:'automatic', light:'light', dark:'dark'};
+  const show = m => { btn.dataset.mode = m; btn.setAttribute('aria-label', `Theme: ${LABEL[m]}`); btn.title = `Theme: ${LABEL[m]} (click to change)`; };
+  show(root.dataset.theme || 'auto');
+  btn.addEventListener('click', () => {
+    const m = NEXT[btn.dataset.mode];
+    if (m === 'auto') delete root.dataset.theme; else root.dataset.theme = m;
+    try { m === 'auto' ? localStorage.removeItem('theme') : localStorage.setItem('theme', m); } catch (e) {}
+    show(m);
+  });
+})();
+
 /* ---------------- header / nav ---------------- */
 const header = document.querySelector('.site-header');
 const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
@@ -691,7 +913,7 @@ const menuBtn = document.getElementById('menuBtn'), nav = document.getElementByI
 menuBtn.addEventListener('click', () => {
   const open = nav.classList.toggle('open');
   menuBtn.setAttribute('aria-expanded', String(open));
-  menuBtn.textContent = open ? '// close' : '// menu';
+  menuBtn.textContent = open ? 'Close' : 'Menu';
 });
 nav.addEventListener('click', e => { if (e.target.closest('a') && nav.classList.contains('open')) menuBtn.click(); });
 
@@ -710,12 +932,14 @@ document.querySelectorAll('.reveal').forEach(el => rev.observe(el));
 
 </script>
 <button class="ask-fab" type="button" id="askFab" aria-controls="assist" aria-expanded="false">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+  <span class="siri-orb" aria-hidden="true"></span>
   Ask about my work
 </button>
-<section class="assist" id="assist" role="dialog" aria-modal="false" aria-labelledby="assistTitle" hidden>
+<div class="siri-edge" id="siriEdge" aria-hidden="true"></div>
+<section class="assist" id="assist" data-state="idle" role="dialog" aria-modal="false" aria-labelledby="assistTitle" hidden>
   <div class="assist-top">
-    <div><b id="assistTitle">Ask about Nishith</b><small>answers from his résumé and this site</small></div>
+    <span class="siri-orb big" aria-hidden="true"></span>
+    <div class="assist-name"><b id="assistTitle">Ask about Nishith</b><small>answers from his résumé and this site</small></div>
     <button class="close" type="button" id="assistClose" aria-label="Close the assistant">
       <svg width="14" height="14" viewBox="0 0 16 16" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>
     </button>
@@ -745,10 +969,16 @@ document.querySelectorAll('.reveal').forEach(el => rev.observe(el));
   const $ = (id) => document.getElementById(id);
   const fab = $("askFab"), panel = $("assist"), log = $("assistLog"), form = $("assistForm"), input = $("assistQ"), mic = $("assistMic");
   let facts = null;
+  // Siri-style states: the panel edge glows while thinking; the whole screen edge glows while listening or speaking
+  const edge = $("siriEdge");
+  const state = (st) => { panel.dataset.state = st; edge.classList.toggle("on", st === "listening" || st === "speaking"); };
   const kb = () => facts ??= fetch("assistant/kb.json").then((r) => r.json()).then((d) => d.facts).catch(() => []);
 
-  const open = (on) => { panel.hidden = !on; fab.setAttribute("aria-expanded", String(on)); if (on) { kb(); input.focus(); } else fab.focus(); };
+  const open = (on) => { if (!on) { window.speechSynthesis?.cancel(); state("idle"); } panel.hidden = !on; fab.setAttribute("aria-expanded", String(on)); if (on) { kb(); input.focus(); } else (fab.classList.contains("away") ? document.getElementById("askTop") : fab).focus(); };
   fab.addEventListener("click", () => open(true));
+  document.getElementById("askTop").addEventListener("click", () => open(true));
+  fab.classList.add("away");
+  new IntersectionObserver(([e]) => fab.classList.toggle("away", e.isIntersecting), { threshold: .25 }).observe(document.getElementById("home"));
   $("assistClose").addEventListener("click", () => open(false));
   panel.addEventListener("keydown", (e) => { if (e.key === "Escape") open(false); });
 
@@ -796,7 +1026,7 @@ document.querySelectorAll('.reveal').forEach(el => rev.observe(el));
   let busy = false;
   async function ask(q, spoken = false) {
     q = q.trim(); if (q.length < 2 || busy) return;
-    busy = true; input.value = "";
+    busy = true; input.value = ""; state("thinking");
     log.append(Object.assign(document.createElement("p"), { className: "msg q", textContent: q }));
     const wait = log.appendChild(Object.assign(document.createElement("p"), { className: "msg wait", textContent: "Looking through his work…" }));
     log.scrollTop = log.scrollHeight;
@@ -817,7 +1047,11 @@ document.querySelectorAll('.reveal').forEach(el => rev.observe(el));
     }
     wait.remove(); busy = false;
     say(reply.text, reply.cites, reply.note);
-    if (spoken && window.speechSynthesis) { speechSynthesis.cancel(); speechSynthesis.speak(new SpeechSynthesisUtterance(reply.text.replace(/\s*\[F\d+\]/g, ""))); }
+    if (spoken && window.speechSynthesis) {
+      const u = new SpeechSynthesisUtterance(reply.text.replace(/\s*\[F\d+\]/g, ""));
+      u.onend = u.onerror = () => { if (panel.dataset.state === "speaking") state("idle"); };
+      speechSynthesis.cancel(); state("speaking"); speechSynthesis.speak(u);
+    } else state("idle");
   }
   form.addEventListener("submit", (e) => { e.preventDefault(); window.speechSynthesis?.cancel(); ask(input.value); });
 
@@ -826,7 +1060,8 @@ document.querySelectorAll('.reveal').forEach(el => rev.observe(el));
   if (Rec) {
     const rec = new Rec(); rec.lang = "en-US"; rec.interimResults = true;
     let on = false;
-    const set = (v) => { on = v; mic.setAttribute("aria-pressed", String(v)); input.placeholder = v ? "Listening…" : "e.g. What did he do at Amazon?"; };
+    const set = (v) => { on = v; mic.setAttribute("aria-pressed", String(v)); input.placeholder = v ? "Listening…" : "e.g. What did he do at Amazon?";
+      if (v) state("listening"); else if (panel.dataset.state === "listening") state("idle"); };
     rec.onresult = (e) => { input.value = [...e.results].map((x) => x[0].transcript).join(""); if (e.results[e.results.length - 1].isFinal) ask(input.value, true); };
     rec.onend = () => set(false);
     rec.onerror = (e) => { if (e.error === "not-allowed") say("Microphone access is blocked; allow it in the browser to ask by voice."); };
