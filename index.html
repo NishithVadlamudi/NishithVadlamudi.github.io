@@ -283,6 +283,47 @@ dialog[open]::backdrop{animation:dim .3s ease-out}
 @media (prefers-reduced-transparency:reduce){.site-header{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}}
 @media (prefers-contrast:more){:root{--line:currentColor}}
 </style>
+<style id="assistant">
+/* Ask-about-me: a sheet that rises from its button; answers cite the facts they came from. */
+.ask-fab{position:fixed;z-index:60;right:max(1.25rem,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 1.25rem);display:flex;align-items:center;gap:.55rem;
+  height:48px;padding:0 1.15rem 0 1rem;border:1px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);font:600 .95rem var(--display);letter-spacing:-.01em;cursor:pointer;
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.45);transition:transform .1s ease-out}
+.ask-fab:active{transform:scale(.96)}
+.ask-fab[aria-expanded="true"]{display:none}
+.assist{position:fixed;z-index:61;right:max(1rem,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 1rem);width:min(420px,100vw - 2rem);height:min(620px,100svh - 6rem);
+  display:flex;flex-direction:column;border:1px solid var(--line);border-radius:22px;background:var(--surface);color:var(--ink);box-shadow:0 30px 80px -24px rgba(0,0,0,.55);
+  transform-origin:100% 100%;animation:assistIn .38s cubic-bezier(.2,.9,.25,1)}
+.assist[hidden]{display:none}
+@keyframes assistIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+.assist-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1rem .8rem 1.25rem;border-bottom:1px solid var(--line)}
+.assist-top b{font-weight:650;letter-spacing:-.015em}
+.assist-top small{display:block;font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.assist-log{flex:1;overflow:auto;padding:1rem 1.25rem;display:flex;flex-direction:column;gap:.9rem;overscroll-behavior:contain}
+.msg{max-width:92%;line-height:1.5;font-size:.97rem;text-wrap:pretty}
+.msg.q{align-self:flex-end;background:var(--ink);color:var(--bg);padding:.55rem .85rem;border-radius:16px 16px 4px 16px}
+.msg.a{align-self:flex-start}
+.msg.a .note{display:block;margin-top:.35rem;font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.msg.wait{color:var(--muted);font-family:var(--mono);font-size:.78rem}
+.cite{display:inline-grid;place-items:center;min-width:1.35rem;height:1.25rem;padding:0 .3rem;margin:0 .1rem;border:0;border-radius:6px;background:color-mix(in oklab,var(--cyan) 22%,transparent);
+  color:var(--ink);font:600 .7rem var(--mono);vertical-align:.1em;cursor:pointer;transition:transform .1s ease-out}
+.cite:active{transform:scale(.92)}
+.chips-ask{display:flex;flex-wrap:wrap;gap:.45rem}
+.chips-ask button{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:.4rem .75rem;font:500 .82rem var(--display);cursor:pointer;text-align:left}
+.chips-ask button:hover{border-color:var(--cyan);color:var(--cyan)}
+.assist form{display:flex;gap:.45rem;padding:.75rem;border-top:1px solid var(--line)}
+.assist input{flex:1;min-width:0;height:42px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);padding:0 .85rem;font:inherit;font-size:.95rem}
+.assist input:focus{outline:none;border-color:var(--cyan)}
+.assist .ico{flex:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:transform .1s ease-out}
+.assist .ico:active{transform:scale(.94)}
+.assist .ico.send{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.assist .ico[aria-pressed="true"]{background:var(--ember);border-color:var(--ember);color:#fff}
+.assist .ico[hidden]{display:none}
+.assist-foot{padding:0 1.25rem .8rem;font-family:var(--mono);font-size:.64rem;color:var(--muted)}
+.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%,30%{box-shadow:0 0 0 3px color-mix(in oklab,var(--cyan) 70%,transparent)}100%{box-shadow:0 0 0 3px transparent}}
+@media (max-width:560px){.assist{right:.5rem;left:.5rem;width:auto;bottom:calc(env(safe-area-inset-bottom,0px) + .5rem);height:min(560px,100svh - 5.5rem)}}
+@media (prefers-reduced-motion:reduce){.assist{animation:none}.flash{animation:none;outline:3px solid var(--cyan)}}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -667,6 +708,132 @@ const rev = new IntersectionObserver(entries => {
 }, {threshold:.15});
 document.querySelectorAll('.reveal').forEach(el => rev.observe(el));
 
+</script>
+<button class="ask-fab" type="button" id="askFab" aria-controls="assist" aria-expanded="false">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+  Ask about my work
+</button>
+<section class="assist" id="assist" role="dialog" aria-modal="false" aria-labelledby="assistTitle" hidden>
+  <div class="assist-top">
+    <div><b id="assistTitle">Ask about Nishith</b><small>answers from his résumé and this site</small></div>
+    <button class="close" type="button" id="assistClose" aria-label="Close the assistant">
+      <svg width="14" height="14" viewBox="0 0 16 16" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>
+    </button>
+  </div>
+  <div class="assist-log" id="assistLog" aria-live="polite">
+    <p class="msg a">Hi! Ask me about Nishith's work at Amazon, his projects or his skills. Every answer links to where it comes from on this page.</p>
+    <div class="chips-ask" id="assistChips"></div>
+  </div>
+  <form id="assistForm" autocomplete="off">
+    <input id="assistQ" type="text" maxlength="300" placeholder="e.g. What did he do at Amazon?" aria-label="Your question">
+    <button class="ico" type="button" id="assistMic" aria-label="Ask by voice" aria-pressed="false" hidden>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+    </button>
+    <button class="ico send" type="submit" aria-label="Ask">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </form>
+  <p class="assist-foot" id="assistFoot">Answers come from his résumé and this site only.</p>
+</section>
+
+<script>
+/* ---------------- ask about my work ---------------- */
+(() => {
+  // The Cloudflare Worker in assistant/; empty until deployed, and then the panel answers from kb.json by keyword match.
+  const ASSIST_URL = "";
+  const SUGGEST = ["What did he do at Amazon?", "Tell me about vidcite", "How does he handle reliability?", "What's his tech stack?", "How can I contact him?"];
+  const $ = (id) => document.getElementById(id);
+  const fab = $("askFab"), panel = $("assist"), log = $("assistLog"), form = $("assistForm"), input = $("assistQ"), mic = $("assistMic");
+  let facts = null;
+  const kb = () => facts ??= fetch("assistant/kb.json").then((r) => r.json()).then((d) => d.facts).catch(() => []);
+
+  const open = (on) => { panel.hidden = !on; fab.setAttribute("aria-expanded", String(on)); if (on) { kb(); input.focus(); } else fab.focus(); };
+  fab.addEventListener("click", () => open(true));
+  $("assistClose").addEventListener("click", () => open(false));
+  panel.addEventListener("keydown", (e) => { if (e.key === "Escape") open(false); });
+
+  if (ASSIST_URL) $("assistFoot").textContent = "Answered by Gemini from public facts only. Please don't share personal information.";
+  $("assistChips").append(...SUGGEST.map((q) => Object.assign(document.createElement("button"), { type: "button", textContent: q, onclick: () => ask(q) })));
+
+  // a citation takes you to its source: a work card opens, a section scrolls into view and glows
+  function goTo(at) {
+    if (at.startsWith("project:")) {
+      const card = document.querySelector(`#workGrid button[data-id="${at.slice(8)}"]`);
+      if (card) { if (innerWidth < 560) open(false); card.click(); return; }
+      at = "#work";
+    }
+    const el = document.querySelector(at); if (!el) return;
+    if (innerWidth < 560) open(false);
+    el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
+  }
+
+  function say(text, cites, note) {
+    const p = document.createElement("p"); p.className = "msg a";
+    const byId = Object.fromEntries((cites || []).map((f, i) => [f.id, { ...f, n: i + 1 }]));
+    let last = 0;
+    for (const m of text.matchAll(/\[(F\d+)\]/g)) {     // text nodes and buttons only: model output never becomes markup
+      p.append(text.slice(last, m.index)); last = m.index + m[0].length;
+      const f = byId[m[1]]; if (!f) continue;
+      p.append(Object.assign(document.createElement("button"), { type: "button", className: "cite", textContent: f.n,
+        title: f.text, ariaLabel: `Source ${f.n}: ${f.text}`, onclick: () => goTo(f.at) }));
+    }
+    p.append(text.slice(last));
+    if (note) p.append(Object.assign(document.createElement("span"), { className: "note", textContent: note }));
+    log.append(p); log.scrollTop = log.scrollHeight;
+    return p;
+  }
+
+  // without the Worker: the facts that share the most words with the question
+  const STOP = new Set("a an and are about at be can did do does for from has have he him his how i in is it me of on or tell the to was what when where which who why with you your nishith's nishith".split(" "));
+  const words = (t) => t.toLowerCase().replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter((w) => w.length > 1 && !STOP.has(w)).map((w) => w.replace(/(ing|ed|es|s)$/, ""));
+  function local(q, all) {
+    const qw = new Set(words(q));
+    return all.map((f) => ({ f, score: words(f.text).filter((w) => qw.has(w)).length })).filter((x) => x.score > 0)
+      .sort((a, b) => b.score - a.score).slice(0, 2).map((x) => x.f);
+  }
+
+  let busy = false;
+  async function ask(q, spoken = false) {
+    q = q.trim(); if (q.length < 2 || busy) return;
+    busy = true; input.value = "";
+    log.append(Object.assign(document.createElement("p"), { className: "msg q", textContent: q }));
+    const wait = log.appendChild(Object.assign(document.createElement("p"), { className: "msg wait", textContent: "Looking through his work…" }));
+    log.scrollTop = log.scrollHeight;
+    const all = await kb();
+    let reply = null;
+    try {
+      if (!ASSIST_URL) throw new Error("not deployed");
+      const r = await fetch(ASSIST_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ question: q }) });
+      const d = await r.json();
+      if (r.status === 429 || r.status === 400) reply = { text: d.error };
+      else if (!r.ok) throw new Error(d.error);
+      else reply = d.answer ? { text: d.answer, cites: d.cites.map((id) => all.find((f) => f.id === id)).filter(Boolean) }
+                            : { text: "That isn't in his résumé or on this site. Try asking about his work at Amazon, vidcite, or his skills." };
+    } catch {
+      const hits = local(q, all);
+      reply = hits.length ? { text: hits.map((f) => `${f.text} [${f.id}]`).join(" "), cites: hits, note: "Matched from his résumé" }
+                          : { text: "I couldn't find that in his résumé or on this site. Try asking about his work at Amazon, vidcite, or his skills." };
+    }
+    wait.remove(); busy = false;
+    say(reply.text, reply.cites, reply.note);
+    if (spoken && window.speechSynthesis) { speechSynthesis.cancel(); speechSynthesis.speak(new SpeechSynthesisUtterance(reply.text.replace(/\s*\[F\d+\]/g, ""))); }
+  }
+  form.addEventListener("submit", (e) => { e.preventDefault(); window.speechSynthesis?.cancel(); ask(input.value); });
+
+  // voice: the browser's own speech recognition (Chrome, Edge, Safari)
+  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (Rec) {
+    const rec = new Rec(); rec.lang = "en-US"; rec.interimResults = true;
+    let on = false;
+    const set = (v) => { on = v; mic.setAttribute("aria-pressed", String(v)); input.placeholder = v ? "Listening…" : "e.g. What did he do at Amazon?"; };
+    rec.onresult = (e) => { input.value = [...e.results].map((x) => x[0].transcript).join(""); if (e.results[e.results.length - 1].isFinal) ask(input.value, true); };
+    rec.onend = () => set(false);
+    rec.onerror = (e) => { if (e.error === "not-allowed") say("Microphone access is blocked; allow it in the browser to ask by voice."); };
+    mic.hidden = false;
+    mic.addEventListener("click", () => { if (on) return rec.stop(); window.speechSynthesis?.cancel(); input.value = ""; rec.start(); set(true); });
+  }
+})();
 </script>
 </body>
 </html>
