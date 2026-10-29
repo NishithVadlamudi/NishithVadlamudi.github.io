@@ -46,20 +46,8 @@ project or scrolls to that section of the page.
 Deploying the Worker and updating its facts: [`assistant/README.md`](assistant/README.md). After editing
 `kb.json`, push and also redeploy the Worker, which carries its own copy of the facts.
 
-## Visitor stats
-
-[GoatCounter](https://www.goatcounter.com) counts visits and résumé downloads, with no cookies or personal data;
-the dashboard is at https://nvadlam18.goatcounter.com. To see who a link was opened by, share a tagged link:
-
-    https://nishithvadlamudi.github.io/?ref=google-recruiter
-
-The `ref` name (lowercase letters, digits, `-` and `_`) shows as the visit's referrer, and a résumé download from
-that visit carries the same name under the `resume-download` event. The page removes `?ref=` from the address bar
-after counting, so a forwarded copy isn't credited to the same link. Visits from localhost aren't counted.
-
 ## Stack
 
-One hand-written `index.html` with no framework or build step, served by GitHub Pages; visits counted by
-GoatCounter (below). SF Pro on Apple
+One hand-written `index.html` with no framework, build step or tracking, served by GitHub Pages. SF Pro on Apple
 devices, Inter elsewhere; technology logos from Devicon via jsDelivr. The assistant runs on Cloudflare Workers with
 Gemini 3.5 Flash-Lite. Respects reduced motion, reduced transparency and increased contrast settings.
