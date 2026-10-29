@@ -544,6 +544,15 @@ footer{border-top:0;background:var(--bg);font-size:.75rem}
 })();
 </script>
 <script data-goatcounter="https://nvadlam18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>
+// Open the site with #gc-check to see, on that device, whether visits can reach GoatCounter.
+if (location.hash === "#gc-check") addEventListener("load", () => setTimeout(async () => {
+  const g = window.goatcounter || {}, loaded = typeof g.count === "function";
+  let skip = "n/a"; try { skip = loaded ? (g.filter() || "no") : "n/a"; } catch (e) { skip = "error: " + e.message; }
+  let reach; try { await fetch("https://nvadlam18.goatcounter.com/count?p=/gc-check&rnd=" + Math.random().toString(36).slice(2, 7), {mode: "no-cors"}); reach = "yes"; } catch (e) { reach = "NO (blocked)"; }
+  alert("GoatCounter check\n\nScript loaded: " + (loaded ? "yes" : "NO (blocked)") + "\nSkipped by script: " + skip + "\nCan reach counter: " + reach + "\n\n" + navigator.userAgent);
+}, 2500));
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
