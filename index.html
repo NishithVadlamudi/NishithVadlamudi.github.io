@@ -995,7 +995,7 @@ document.querySelectorAll('.reveal').forEach(el => rev.observe(el));
 /* ---------------- ask about my work ---------------- */
 (() => {
   // The Cloudflare Worker in assistant/; if it is unreachable or out of quota, the panel answers from kb.json by keyword match.
-  const ASSIST_URL = "https://nishith-assistant.nishithvadlamudi3.workers.dev";
+  const ASSIST_URL = "https://nishith-assistant.nishith-vadlamudi.workers.dev";
   const SUGGEST = ["What did he do at Amazon?", "Tell me about Resolve", "Tell me about vidcite", "How does he handle reliability?", "What's his tech stack?", "How can I contact him?"];
   const $ = (id) => document.getElementById(id);
   const fab = $("askFab"), panel = $("assist"), log = $("assistLog"), form = $("assistForm"), input = $("assistQ"), mic = $("assistMic");
