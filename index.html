@@ -736,6 +736,15 @@ const PROJECTS = [
    points:["Built hybrid retrieval with pgvector, Postgres full-text search, rank fusion and a cross-encoder reranker; the right passage ranked first went from 59% to 85%.","Wrote a gold eval with a held-out split and let it decide, including rejecting changes that looked good on dev but not on holdout.","Caught silent failures: NaN reranker scores that looked like a valid result, a vector index returning too few candidates, and a delete that never committed.","Kept it working under limits: search-only answers when the LLM quota runs out, per-visitor rate limits and a tested Docker image."],
    stack:["Python","FastAPI","PostgreSQL","pgvector","Supabase","sentence-transformers","Gemini","Whisper","Docker"],
    links:[{label:"Try the demo", href:"https://nishithvadlamudi.github.io/vidcite/"},{label:"Source on GitHub", href:"https://github.com/NishithVadlamudi/vidcite"}]},
+  {id:"resolve", stat:"194", statLabel:"key-free tests passed; 35 live Neon checks", cat:"personal", full:true, loop:"assets/resolve-launch.mp4", poster:"assets/resolve-poster.png", video:"assets/resolve-demo.mp4", when:"Personal project", role:"Agent tools & payment safety",
+   title:"Payment disputes. Human decisions.",
+   blurb:"Gemini investigates fictional payment records; verified evidence explains the result, and a human keeps refund approval.",
+   summary:"A payment-investigation workspace built with Next.js, TypeScript and Neon Postgres. Gemini chooses scoped tools while code renders explanations from validated records. The agent can request an eligible refund for review, but cannot approve or execute it. All payments are fictional.",
+   before:"131 key-free tests and 29 isolated Neon integration checks at the earlier milestone.",
+   after:"194 key-free tests and 35 live Neon integration checks pass; these are test counts, not an AI-accuracy gain.",
+   points:["Built the payment dashboard, investigation drafts, observable tool activity and human approval queue.","Enforced integer cents, customer scope, balance limits and exactly-once mock execution with SQL locks and unique keys.","Replaced arbitrary final model prose with validated payment/refund summaries; verified the deployed balance-limit correction independently in production Neon.","Kept frozen synthetic evaluation reports and failures: 21/22 reviewed model cases plus 2/2 guards; a later deterministic replay passes all 22 recorded traces without claiming a new model score."],
+   stack:["Next.js","TypeScript","Gemini","Neon Postgres","PostgREST","SQL","Docker","GitHub Actions"],
+   links:[{label:"Try Resolve", href:"https://resolve-payments.onrender.com/payments"},{label:"Source on GitHub", href:"https://github.com/NishithVadlamudi/AI-Payment-Dispute-Agent"},{label:"Evaluation evidence", href:"https://github.com/NishithVadlamudi/AI-Payment-Dispute-Agent/blob/main/docs/evidence-qualification-results.md"}]},
   {id:"v2", stat:"0", statLabel:"client impact at launch, after fixing 9 defects", cat:"platform", when:"2026", role:"Engineer",
    title:"Launching a new API version",
    blurb:"Tracked down why a new API version wasn’t working and got it launched without disrupting existing clients.",
@@ -987,7 +996,7 @@ document.querySelectorAll('.reveal').forEach(el => rev.observe(el));
 (() => {
   // The Cloudflare Worker in assistant/; if it is unreachable or out of quota, the panel answers from kb.json by keyword match.
   const ASSIST_URL = "https://nishith-assistant.nishithvadlamudi3.workers.dev";
-  const SUGGEST = ["What did he do at Amazon?", "Tell me about vidcite", "How does he handle reliability?", "What's his tech stack?", "How can I contact him?"];
+  const SUGGEST = ["What did he do at Amazon?", "Tell me about Resolve", "Tell me about vidcite", "How does he handle reliability?", "What's his tech stack?", "How can I contact him?"];
   const $ = (id) => document.getElementById(id);
   const fab = $("askFab"), panel = $("assist"), log = $("assistLog"), form = $("assistForm"), input = $("assistQ"), mic = $("assistMic");
   let facts = null;

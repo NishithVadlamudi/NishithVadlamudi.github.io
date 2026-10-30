@@ -12,19 +12,19 @@ infrastructure. Live at **https://nishithvadlamudi.github.io**.
   side follows it.
 - **Expertise:** three capability cards and five skill rows, each skill a chip with its technology's logo
   ([Devicon](https://devicon.dev), MIT; dark-lettered logos are inverted in dark mode).
-- **Work:** vidcite as a full-width feature tile with its launch video, above an even grid of nine projects. Each card
+- **Work:** vidcite and Resolve as full-width feature tiles with their launch videos, above nine project cards. Each card
   leads with one number from the résumé (4.7× peak, 1,000+ shipments a week, 99.97% cache hits...) and opens to the
-  full before and after; vidcite's opens to its 1-minute walkthrough.
+  full before and after; the featured projects open narrated walkthroughs. Resolve uses verified test counts, not an AI-accuracy claim.
 - **Ask about my work:** an assistant that answers questions about the portfolio, by text or voice, with a Siri-style
   look (below).
 
 ## Ask about my work
 
-Visitors can ask things like "What did he do at Amazon?" or "Tell me about vidcite", by typing or speaking, and get
+Visitors can ask things like "What did he do at Amazon?" or "Tell me about Resolve", by typing or speaking, and get
 a short answer written by Gemini. Every claim cites the fact it came from, and each citation chip opens that
 project or scrolls to that section of the page.
 
-- **Grounded:** answers come only from [`assistant/kb.json`](assistant/kb.json), 27 facts taken from the published
+- **Grounded:** answers come only from [`assistant/kb.json`](assistant/kb.json), 30 facts taken from the published
   résumé and this site. Questions the facts don't cover, such as salary, are refused rather than guessed. An answer
   that cites nothing it was given counts as not covered, and invented citations are removed.
 - **Key kept off the page:** a Cloudflare Worker ([`assistant/worker.js`](assistant/worker.js)) holds the Gemini
@@ -51,3 +51,7 @@ Deploying the Worker and updating its facts: [`assistant/README.md`](assistant/R
 One hand-written `index.html` with no framework, build step or tracking, served by GitHub Pages. SF Pro on Apple
 devices, Inter elsewhere; technology logos from Devicon via jsDelivr. The assistant runs on Cloudflare Workers with
 Gemini 3.5 Flash-Lite. Respects reduced motion, reduced transparency and increased contrast settings.
+
+## Resolve integration
+
+The Resolve feature card includes a local poster, muted launch loop and 54-second narrated walkthrough in `assets/resolve-*`, plus links to the live fictional-payment app, source and evaluation evidence. Knowledge-base facts F28–F30 cover its architecture, 194/35 verified test counts and measured evaluation limitations. Redeploy the assistant Worker after publishing these facts; the browser fallback reads the same updated JSON. The résumé PDF is unchanged.

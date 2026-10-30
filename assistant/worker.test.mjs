@@ -67,3 +67,12 @@ test("each visitor is limited per hour", async () => {
   assert.equal(codes.filter((c) => c === 200).length, 20);
   assert.equal(codes.at(-1), 429);
 });
+
+
+test("Resolve facts are available to grounded answers with valid project citations", async () => {
+  gemini("Resolve investigates fictional payments with human approval [F28]. Its checks include 194 key-free tests and 35 live Neon integration tests [F29].");
+  const result = await (await ask({ question: "Tell me about Resolve and how it was tested." })).json();
+  assert.deepEqual(result.cites, ["F28", "F29"]);
+  assert.ok(sent.init.systemInstruction.parts[0].text.includes("[F30]"));
+  assert.ok(sent.init.systemInstruction.parts[0].text.includes("not a new model-accuracy score"));
+});
